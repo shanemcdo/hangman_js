@@ -874,7 +874,10 @@ class HangmanGame{
         this.over = false;
     }
     get_word(){
-        return words[Math.floor(Math.random() * words.length)].toLowerCase();
+        const params = new URL(window.location).searchParams;
+        const word = params.get('q');
+        if(word === null) return words[Math.floor(Math.random() * words.length)].toLowerCase();
+        return atob(word).toLowerCase();
     }
     update_word_element(){
         let string = '';
